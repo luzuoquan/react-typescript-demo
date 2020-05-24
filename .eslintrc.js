@@ -3,13 +3,10 @@ const path = require('path');
 module.exports = {
   root: true, 
   parser: '@typescript-eslint/parser',
-  extends: 'airbnb',
+  extends: ['airbnb-typescript'],
   plugins: ['@typescript-eslint', 'jsx-a11y', 'import', 'react-hooks'],
   parserOptions: {
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    }
+    project: './tsconfig.json'
   },
   settings: {
     'import/resolver': {
@@ -37,7 +34,7 @@ module.exports = {
     "no-shadow": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": 0,
-    "import/extensions": 0,
+    // "import/extensions": 0,
     "@typescript-eslint/consistent-type-definitions": [
       "error",
       "interface"

@@ -13,11 +13,8 @@ module.exports = (api) => {
       useBuiltIns: 'usage',
       corejs: { version: 3, proposals: true },
     }],
-    require("@babel/preset-react"),
-    [require("@babel/preset-typescript"), {
-      isTSX: true,
-      allExtensions: true,
-    }],
+    [require("@babel/preset-react")],
+    [require("@babel/preset-typescript")],
   ];
   return {
     plugins,

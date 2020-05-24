@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export default function App() {
+export default function App(): ReactElement {
   return (
-    <div>app</div>
+    <div>React TypeScript</div>
   );
 }
