@@ -33,11 +33,10 @@ export default handleActions({
   [mutationTypes.UPDATE_TITLE](state: IGlobalState, action: IAction) {
     return {
       ...state,
-      action: action.payload,
+      title: action.payload,
     };
   },
   [mutationTypes.QUERY_TITLE](state: IGlobalState) {
-    console.log('here');
     return state;
   },
 }, initialState);
