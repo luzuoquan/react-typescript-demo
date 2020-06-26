@@ -3,7 +3,12 @@ const path = require('path');
 module.exports = {
   root: true, 
   parser: '@typescript-eslint/parser',
-  extends: ['airbnb-typescript'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking'
+  ],
   plugins: ['@typescript-eslint', 'jsx-a11y', 'import', 'react-hooks'],
   parserOptions: {
     project: './tsconfig.json'
@@ -38,6 +43,7 @@ module.exports = {
     "@typescript-eslint/consistent-type-definitions": [
       "error",
       "interface"
-    ]
+    ],
+    "@typescript-eslint/no-explicit-any": 0,
   }
 }

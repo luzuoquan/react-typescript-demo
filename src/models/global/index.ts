@@ -4,25 +4,25 @@ import {
   handleActions,
 } from 'redux-actions';
 
-interface IMutationTypes {
-  [propName: string]: string,
+interface ImutationTypes {
+  [propName: string]: string;
 }
 
-interface IGlobalState {
-  title: string,
+interface IglobalState {
+  title: string;
 }
 
-interface IAction {
-  type: string,
-  payload: any,
+interface Iaction {
+  type: string;
+  payload: any;
 }
 
-export const mutationTypes: IMutationTypes = {
+export const mutationTypes: ImutationTypes = {
   QUERY_TITLE: 'QUERY_TITLE',
   UPDATE_TITLE: 'UPDATE_TITLE',
 };
 
-const initialState: IGlobalState = {
+const initialState: IglobalState = {
   title: '云课堂',
 };
 
@@ -30,31 +30,13 @@ export const queryTitle = createAction(mutationTypes.QUERY_TITLE);
 export const updateTitle = createAction(mutationTypes.UPDATE_TITLE);
 
 export default handleActions({
-  [mutationTypes.UPDATE_TITLE](state: IGlobalState, action: IAction) {
+  [mutationTypes.UPDATE_TITLE](state: IglobalState, action: Iaction) {
     return {
       ...state,
       title: action.payload,
     };
   },
-  [mutationTypes.QUERY_TITLE](state: IGlobalState) {
+  [mutationTypes.QUERY_TITLE](state: IglobalState) {
     return state;
   },
 }, initialState);
-
-
-// const mutations = {
-//   [mutationTypes.QUERY_TITLE](state: IGlobalState, action: IAction) {
-//     return {
-//       ...state,
-//       action: action.payload,
-//     };
-//   },
-// };
-
-// export default function (
-//   state: IGlobalState = initialState,
-//   action: IAction,
-// ) {
-//   if (!mutations[action.type]) return state;
-//   return { ...state, ...mutations[action.type](state, action) };
-// }
