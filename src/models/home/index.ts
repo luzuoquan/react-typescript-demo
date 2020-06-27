@@ -1,4 +1,3 @@
-
 import {
   createAction,
   handleActions,
@@ -8,12 +7,12 @@ interface ImutationTypes {
   [propName: string]: string;
 }
 
-interface IglobalState {
+interface Istate {
   title: string;
 }
 
 interface Iaction {
-  type: string;
+  readonly type: string;
   payload: any;
 }
 
@@ -22,7 +21,7 @@ export const mutationTypes: ImutationTypes = {
   UPDATE_TITLE: 'UPDATE_TITLE',
 };
 
-const initialState: IglobalState = {
+const initialState: Istate = {
   title: '云课堂',
 };
 
@@ -30,13 +29,13 @@ export const queryTitle = createAction(mutationTypes.QUERY_TITLE);
 export const updateTitle = createAction(mutationTypes.UPDATE_TITLE);
 
 export default handleActions({
-  [mutationTypes.UPDATE_TITLE](state: IglobalState, action: Iaction) {
+  [mutationTypes.QUERY_TITLE](state: Istate) {
+    return state;
+  },
+  [mutationTypes.UPDATE_TITLE](state: Istate, action: Iaction) {
     return {
       ...state,
       title: action.payload,
     };
-  },
-  [mutationTypes.QUERY_TITLE](state: IglobalState) {
-    return state;
   },
 }, initialState);

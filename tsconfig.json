@@ -1,21 +1,16 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
-    "removeComments": false,
-    "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "outDir": "dist",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
     "baseUrl": ".",

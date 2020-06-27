@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import globalInfo from './global';
+import homeReducer from './home';
 
 export default combineReducers({
-  globalInfo,
+  homeReducer,
 });

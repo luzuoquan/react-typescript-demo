@@ -39,11 +39,17 @@ module.exports = {
     "no-shadow": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": 0,
-    // "import/extensions": 0,
     "@typescript-eslint/consistent-type-definitions": [
       "error",
       "interface"
     ],
     "@typescript-eslint/no-explicit-any": 0,
+    "import/extensions": ["error", "ignorePackages", {
+      ts: "never",
+      tsx: "never",
+      js: "never",
+      jsx: "never",
+      json: "never",
+    }]
   }
 }

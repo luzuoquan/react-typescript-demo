@@ -1,48 +1,47 @@
-import React, { Component, Dispatch, ReactNode } from 'react';
+import React, { Component, ReactNode, Dispatch } from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { connect } from 'react-redux';
-import { updateTitle } from '@/models/global';
+import { updateTitle } from '@/models/home';
 
-type IProps = {
+type TProps = {
+  title: string;
   updateTitle: any;
-  globalInfo: any;
 } & RouteChildrenProps;
 
 interface Istate {
-  [propName: string]: string;
+  [propName: string]: any;
 }
 
-type IStateProps = {
-  globalInfo: any;
-} & Istate;
+interface Istateprops {
+  homeReducer: any;
+}
 
-interface IdispatchActionProps {
+interface IdispatchToProps {
   updateTitle: any;
   dispatch?: Dispatch<any>;
 }
 
-const mapDispatchToProps: IdispatchActionProps = {
+const mapDispatchToProps: IdispatchToProps = {
   updateTitle,
 };
 
-@(connect((state: IStateProps) => ({
-  globalInfo: state.globalInfo,
+@(connect((state: Istateprops) => ({
+  title: state.homeReducer.title,
 }), mapDispatchToProps) as any)
-export default class Home extends Component<IProps, Istate> {
+export default class Home extends Component<TProps, Istate> {
   handleClick: () => void = () => {
     const { updateTitle } = this.props;
-    updateTitle('1234');
-  };
+    updateTitle('React TypeScript');
+  }
 
   render(): ReactNode {
-    const { globalInfo: { title } } = this.props;
+    const { title } = this.props;
     return (
-      <div>
+      <div className="home">
         <div>
-          React TypeScript
           {title}
         </div>
-        <button onClick={this.handleClick} type="button">点击事件</button>
+        <button type="button" onClick={this.handleClick}>更改</button>
       </div>
     );
   }
