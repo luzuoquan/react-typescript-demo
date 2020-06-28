@@ -1,6 +1,7 @@
 import React, { Component, ReactNode, Dispatch } from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { connect } from 'react-redux';
+import { unstable_trace as track } from 'scheduler/tracing';
 import { updateTitle } from '@/models/home';
 
 type TProps = {
@@ -31,7 +32,10 @@ const mapDispatchToProps: IdispatchToProps = {
 export default class Home extends Component<TProps, Istate> {
   handleClick: () => void = () => {
     const { updateTitle } = this.props;
-    updateTitle('React TypeScript');
+    // console.log(track);
+    track('update title', performance.now(), () => {
+      updateTitle('React TypeScript');
+    });
   }
 
   render(): ReactNode {

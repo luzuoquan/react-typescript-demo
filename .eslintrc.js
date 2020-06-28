@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb/hooks',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
@@ -24,7 +25,7 @@ module.exports = {
             extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
           },
         }
-      }
+      },
     }
   },
   env: {
@@ -50,6 +51,7 @@ module.exports = {
       js: "never",
       jsx: "never",
       json: "never",
-    }]
+    }],
+    "import/no-unresolved": [2, {commonjs: true, amd: true}]
   }
 }
