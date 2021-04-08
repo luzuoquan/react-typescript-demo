@@ -1,26 +1,45 @@
-import axios from 'axios';
+import fetch from 'isomorphic-fetch';
 
-const instance = axios.create();
-
-const defaultOption = {
-  method: 'get',
-  dataType: 'json',
-  headers: { 'X-Requested-With': 'XMLHttpRequest' },
-  withCredentials: false,
+const defaultRequestConfig = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
 };
 
-instance.interceptors.response.use((response): Promise<any> => {
-  const {
-    data,
-  } = response;
-
-  return Promise.resolve(data);
-});
-
-export default function fetch(params: any): Promise<any> {
-  const composeOption = { ...defaultOption, ...params };
-  return instance.request({
-    ...composeOption,
-    validateStatus: (status) => status >= 200 && status < 300,
-  });
+export default async function customFetch(reqUrl: string, reqParams: any) {
+  try {
+    let time: any = null;
+    const { body, timeout = 300000, method, } = reqParams;
+    const requestConfig = defaultRequestConfig;
+    if (method) {
+      requestConfig.method = method;
+    }
+    const response: any = await Promise.race([
+      fetch(reqUrl, {
+        ...requestConfig,
+        body: JSON.stringify(body),
+      }),
+      new Promise((resolve, reject)=>{
+        time = setTimeout(()=>{
+          reject({
+            from:'caoh5-request:requestByFetch',
+            message:'网络异常'
+          });
+        },timeout);
+      })
+    ]);
+    clearTimeout(time);
+    if (response.status === 200 || (response.status >= 550 && response.status <= 560)) {
+      const res = await response.json();
+      return Promise.resolve(res);
+    }
+    return Promise.reject({
+      code: response.status,
+      data: null,
+      message: response.statusText,
+    });
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }

@@ -39,8 +39,8 @@ export default class Home extends Component<TProps, Istate> {
 
   handleClick = (): void => {
     const githubName = 'luzuoquan'; // 这里可以替换成有效的github name
-    fetch({
-      url: `https://api.github.com/users/${githubName}`,
+    fetch(`https://api.github.com/users/${githubName}`, {
+      method: 'GET',
     })
       .then((res) => {
         this.setState({

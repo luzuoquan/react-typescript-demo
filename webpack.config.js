@@ -39,6 +39,19 @@ module.exports = (env) => {
         use: [{
           loader: 'babel-loader',
         }],
+      }, {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'style-loader',
+        }, {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+          }
+        }, {
+          loader: 'postcss-loader'
+        }]
       }],
     },
     plugins: [
@@ -47,7 +60,7 @@ module.exports = (env) => {
       }),
       new webpack.LoaderOptionsPlugin({ options: {} }),
       new HtmlWebpackPlugin({
-        title: 'Redux demo',
+        title: 'React & TypeScript',
         template: path.join(__dirname, './src/view/index.html'),
         inject: true,
         hash: false,

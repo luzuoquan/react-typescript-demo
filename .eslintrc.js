@@ -4,14 +4,15 @@ module.exports = {
   root: true, 
   parser: '@typescript-eslint/parser',
   extends: [
-    'airbnb',
+    'airbnb-typescript',
     'airbnb/hooks',
-    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
   plugins: ['@typescript-eslint', 'jsx-a11y', 'import', 'react-hooks'],
   parserOptions: {
+    ecmaVersion: 2019,
+    sourceType: 'module',
     project: './tsconfig.json'
   },
   settings: {
@@ -31,6 +32,10 @@ module.exports = {
   env: {
     browser: true,
   },
+  globals: {
+    window: true,
+    ENV: true,
+  },
   rules: {
     "indent": ["error", 2],
     "quotes": ["error", "single"],
@@ -44,6 +49,7 @@ module.exports = {
       "error",
       "interface"
     ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
     "@typescript-eslint/no-explicit-any": 0,
     "import/extensions": ["error", "ignorePackages", {
       ts: "never",

@@ -1,34 +1,12 @@
-import React, { ReactElement, Profiler } from 'react';
-import {
-  BrowserRouter,
-  Route,
-} from 'react-router-dom';
-import Home from '@/containers/home';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Routes from '@/routes';
+import store from '@/store';
 
-interface IprofilerParams {
-  id: string;
-  phase: string;
-  actualDuration: number;
-  baseDuration: number;
-  startTime: number;
-  commitTime: number;
-  interactions: any;
-}
-
-export default function App(): ReactElement {
-  const onRender: (...params: any) => void = (
-    ...params
-  ) => {
-    console.log(
-      params,
-    );
-  };
-
+export default function App(): JSX.Element {
   return (
-    <Profiler id="router" onRender={onRender}>
-      <BrowserRouter>
-        <Route path="/" component={Home} />
-      </BrowserRouter>
-    </Profiler>
+    <Provider store={store as any}>
+      <Routes />
+    </Provider>
   );
 }
