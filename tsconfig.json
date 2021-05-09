@@ -1,26 +1,33 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "outDir": "./",
+    "target": "esnext",
+    "allowJs": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "outDir": "dist",
-    "strictNullChecks": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "jsx": "react",
     "sourceMap": true,
+    "pretty": true,
     "baseUrl": ".",
     "rootDir": ".",
     "jsx": "react",
     "allowJs": true,
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["./src/*"],
-    }
+      "@/*": [
+        "./src/*"
+      ]
+    },
   },
   "typeRoots": [
     "node_modules/@types",
@@ -28,7 +35,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "**/*.spec.ts"
   ],
-  "compileOnSave": false
 }
