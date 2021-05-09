@@ -21,8 +21,16 @@ export const mutationTypes: ImutationTypes = {
   UPDATE_TITLE: 'UPDATE_TITLE',
 };
 
-const initialState: Istate = {
-  title: '云课堂',
+export interface UserInfo {
+  name: string | null;
+  avatarUrl: string;
+  location: string | null;
+}
+
+const initialState: UserInfo = {
+  name: 'default',
+  avatarUrl: '',
+  location: '',
 };
 
 export const queryTitle = createAction(mutationTypes.QUERY_TITLE);

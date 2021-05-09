@@ -3,15 +3,14 @@ import { RouteChildrenProps } from 'react-router';
 import { connect } from 'react-redux';
 import { updateTitle } from '@/models/home';
 import fetch from '@/utils/fetch';
+import { CommonPageProps, CommonPageState } from '@/types';
+import { UserInfo } from '@/models/home';
 
 type TProps = {
   title: string;
   updateTitle: any;
 } & RouteChildrenProps;
 
-interface Istate {
-  [propName: string]: any;
-}
 
 interface Istateprops {
   homeReducer: any;
@@ -27,13 +26,15 @@ const mapDispatchToProps: IdispatchToProps = {
 };
 
 @(connect((state: Istateprops) => ({
-  title: state.homeReducer.title,
+  ...state.homeReducer,
 }), mapDispatchToProps) as any)
-export default class Home extends Component<TProps, Istate> {
+export default class Home extends Component<CommonPageProps, UserInfo> {
   constructor(props: TProps) {
     super(props);
     this.state = {
-      userInfo: {},
+      name: '',
+      avatarUrl: '',
+      location:'',
     };
   }
 
@@ -44,25 +45,34 @@ export default class Home extends Component<TProps, Istate> {
     })
       .then((res) => {
         this.setState({
-          userInfo: res,
+          name: res.name,
+          avatarUrl: res.avatar_url,
+          location: res.location,
         });
       });
   }
 
   render(): JSX.Element {
-    const { userInfo } = this.state;
+    const {
+      name,
+      avatarUrl,
+      location,
+    } = this.state;
     return (
       <div className="home">
         <button type="button" onClick={this.handleClick}>拉取个人github信息</button>
-        {userInfo?.avatar_url && (
+        {avatarUrl && (
           <div>
             头像：
-            <img alt="avator" src={userInfo.avatar_url} style={{ display: 'block', width: '100px' }} />
+            <img alt="avator" src={avatarUrl} style={{ display: 'block', width: '100px' }} />
           </div>
         )}
         <div style={{ marginTop: '20px' }}>
           nickname:
-          {userInfo?.name}
+          {name}
+        </div>
+        <div>
+          Location: {location}
         </div>
       </div>
     );
