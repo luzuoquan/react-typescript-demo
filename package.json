@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "3",
     "html-webpack-plugin": "^4.3.0",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.10",
     "postcss-loader": "4.2.0",
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.1.1",
